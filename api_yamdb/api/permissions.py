@@ -5,7 +5,7 @@ class AuthorModerAdminOrReadOnly(permissions.BasePermission):
     """Разрешение только для админа, модератора или владельца."""
 
     def has_permission(self, request, view):
-        return(
+        return (
             request.method in permissions.SAFE_METHODS
             or request.user.is_authenticated
         )
