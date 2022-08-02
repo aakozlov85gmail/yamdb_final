@@ -1,30 +1,21 @@
 from django.shortcuts import get_object_or_404
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import viewsets, status, permissions, filters
+from rest_framework import filters, permissions, status, viewsets
 from rest_framework.decorators import action
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from reviews.models import Category, Genre, Review, Title, User
 
-from reviews.models import (User, Title, Review, Genre, Category)
 from .filters import TitleFilter
-from .permissions import (
-    AuthorModerAdminOrReadOnly,
-    IsOwnerOrAdmins,
-    IsAdminUserOrReadOnly,
-)
-from .serializers import (
-    UserSelfRegistrationSerializer,
-    UsersForAdminSerializer,
-    GetTokenSerializer,
-    ReviewSerializer,
-    CommentSerializer,
-    MeSerializer,
-    CategorySerializer,
-    GenreSerializer,
-    TitleSerializer,
-)
+from .permissions import (AuthorModerAdminOrReadOnly, IsAdminUserOrReadOnly,
+                          IsOwnerOrAdmins)
+from .serializers import (CategorySerializer, CommentSerializer,
+                          GenreSerializer, GetTokenSerializer, MeSerializer,
+                          ReviewSerializer, TitleSerializer,
+                          UserSelfRegistrationSerializer,
+                          UsersForAdminSerializer)
 
 
 class ReviewViewSet(viewsets.ModelViewSet):
